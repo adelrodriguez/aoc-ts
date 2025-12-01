@@ -1,8 +1,8 @@
-const __dirname = new URL('.', import.meta.url).pathname;
-const input = await Deno.readTextFile(__dirname + '/input.txt');
-const trees = input.split(/\n/).map((line) => line.split('').map(Number));
+const __dirname = new URL(".", import.meta.url).pathname
+const input = await Deno.readTextFile(__dirname + "/input.txt")
+const trees = input.split(/\n/).map((line) => line.split("").map(Number))
 
-const scenicScores = [];
+const scenicScores = []
 
 trees.forEach((row, rowIndex) => {
   row.forEach((tree, columnIndex) => {
@@ -14,74 +14,74 @@ trees.forEach((row, rowIndex) => {
       columnIndex === 0 ||
       columnIndex === row.length - 1
     ) {
-      return;
+      return
     }
 
-    const scoreUp = checkUp(tree, rowIndex, columnIndex);
-    const scoreDown = checkDown(tree, rowIndex, columnIndex);
-    const scoreLeft = checkLeft(tree, rowIndex, columnIndex);
-    const scoreRight = checkRight(tree, rowIndex, columnIndex);
+    const scoreUp = checkUp(tree, rowIndex, columnIndex)
+    const scoreDown = checkDown(tree, rowIndex, columnIndex)
+    const scoreLeft = checkLeft(tree, rowIndex, columnIndex)
+    const scoreRight = checkRight(tree, rowIndex, columnIndex)
 
-    const score = scoreUp * scoreDown * scoreLeft * scoreRight;
+    const score = scoreUp * scoreDown * scoreLeft * scoreRight
 
-    scenicScores.push(score);
-  });
-});
+    scenicScores.push(score)
+  })
+})
 
 function checkUp(tree, row, column) {
-  let score = 0;
+  let score = 0
 
   for (let i = row - 1; i >= 0; i--) {
-    score++;
+    score++
 
     if (trees[i][column] >= tree) {
-      return score;
+      return score
     }
   }
 
-  return score;
+  return score
 }
 
 function checkDown(tree, row, column) {
-  let score = 0;
+  let score = 0
 
   for (let i = row + 1; i < trees.length; i++) {
-    score++;
+    score++
 
     if (trees[i][column] >= tree) {
-      return score;
+      return score
     }
   }
 
-  return score;
+  return score
 }
 
 function checkRight(tree, row, column) {
-  let score = 0;
+  let score = 0
 
   for (let i = column + 1; i < trees[row].length; i++) {
-    score++;
+    score++
 
     if (trees[row][i] >= tree) {
-      return score;
+      return score
     }
   }
 
-  return score;
+  return score
 }
 
 function checkLeft(tree, row, column) {
-  let score = 0;
+  let score = 0
 
   for (let i = column - 1; i >= 0; i--) {
-    score++;
+    score++
 
     if (trees[row][i] >= tree) {
-      return score;
+      return score
     }
   }
 
-  return score;
+  return score
 }
 
-console.log(scenicScores.sort((a, b) => b - a)[0]);
+console.log(scenicScores.sort((a, b) => b - a)[0])

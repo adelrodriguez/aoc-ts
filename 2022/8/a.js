@@ -1,8 +1,8 @@
-const __dirname = new URL('.', import.meta.url).pathname;
-const input = await Deno.readTextFile(__dirname + '/input.txt');
-const trees = input.split(/\n/).map((line) => line.split('').map(Number));
+const __dirname = new URL(".", import.meta.url).pathname
+const input = await Deno.readTextFile(__dirname + "/input.txt")
+const trees = input.split(/\n/).map((line) => line.split("").map(Number))
 
-let visible = 0;
+let visible = 0
 
 trees.forEach((row, rowIndex) => {
   row.forEach((tree, columnIndex) => {
@@ -14,8 +14,8 @@ trees.forEach((row, rowIndex) => {
       columnIndex === 0 ||
       columnIndex === row.length - 1
     ) {
-      visible++;
-      return;
+      visible++
+      return
     }
 
     if (
@@ -24,49 +24,49 @@ trees.forEach((row, rowIndex) => {
       checkLeft(tree, rowIndex, columnIndex) ||
       checkRight(tree, rowIndex, columnIndex)
     ) {
-      visible++;
+      visible++
     }
-  });
-});
+  })
+})
 
 function checkUp(tree, row, column) {
   for (let i = row - 1; i >= 0; i--) {
     if (trees[i][column] >= tree) {
-      return false;
+      return false
     }
   }
 
-  return true;
+  return true
 }
 
 function checkDown(tree, row, column) {
   for (let i = row + 1; i < trees.length; i++) {
     if (trees[i][column] >= tree) {
-      return false;
+      return false
     }
   }
 
-  return true;
+  return true
 }
 
 function checkRight(tree, row, column) {
   for (let i = column + 1; i < trees[row].length; i++) {
     if (trees[row][i] >= tree) {
-      return false;
+      return false
     }
   }
 
-  return true;
+  return true
 }
 
 function checkLeft(tree, row, column) {
   for (let i = column - 1; i >= 0; i--) {
     if (trees[row][i] >= tree) {
-      return false;
+      return false
     }
   }
 
-  return true;
+  return true
 }
 
-console.log(visible);
+console.log(visible)

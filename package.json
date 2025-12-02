@@ -13,6 +13,7 @@
   },
   "scripts": {
     "check": "adamantite check",
+    "dev": "bun run --hot",
     "fix": "adamantite fix",
     "typecheck": "tsc --noEmit"
   }

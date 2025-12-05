@@ -3,5 +3,12 @@
   "extends": ["adamantite"],
   "files": {
     "includes": ["**", "!2022"]
+  },
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noConsole": "off"
+      }
+    }
   }
 }

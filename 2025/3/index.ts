@@ -86,5 +86,5 @@ async function partTwo() {
   return answer
 }
 
-console.log(await partOne())
-console.log(await partTwo())
+console.log("Part one answer is:", await partOne())
+console.log("Part two answer is:", await partTwo())
